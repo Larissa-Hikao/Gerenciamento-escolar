@@ -10,16 +10,10 @@
     <table border=1>
         <tr>
             <th>Nome</th>
-            <th>E-mail</th>
-            <th>Data Nascimento</th>
-            <th>Nivel</th>
         </tr>
-        @foreach($usuarios as $usuario)
+        @foreach($niveis as $nivel)
             <tr>
-                <td>{{$usuario->nome}}</td>
-                <td>{{$usuario->email}}</td>
-                <td>{{$usuario->data_nascimento}}</td>
-                <td>{{$usuario->nivel->nome}}</td>
+                <td>{{$nivel->nome}}</td>
             </tr>
         @endforeach
     </table>

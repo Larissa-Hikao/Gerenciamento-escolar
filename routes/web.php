@@ -17,8 +17,13 @@ Route::get('/', function () {
 
 */
 
+//ROTA DE USUÁRIO
+
 Route::get('/', 'UsuarioController@index');
 Route::get('/from', 'UsuarioController@create');
+Route::post('/', 'UsuarioController@store');
+Route::get('/{id}/edit', 'UsuarioController@edit');
+Route::put('/{id}', 'UsuarioController@update');
 
 //Route::get('/soma/{a}/{b}', 'UsuarioController@soma');
 
@@ -26,7 +31,14 @@ Route::get('/from', 'UsuarioController@create');
 //GET
 
 //POST
-Route::post('/', 'UsuarioController@store');
+
+//ROTAS DE NIVEL
+
+Route::get('/nivel', 'NivelController@show');
+Route::get('/nivel/from', 'NivelController@create');
+Route::post('/nivel', 'NivelController@store');
+Route::get('/nivel/{id}/edit', 'NivelController@edit');
+Route::put('/nivel/{id}', 'NivelController@update');
 
 //PUT
 
