@@ -13,19 +13,32 @@
         @method('PUT')
     @endif
 
+    @foreach($errors->all() as $error)
+        {{$error}}
+        <br>
+    @endforeach
+    <br>
+
     <!-- CRIANDO => URL('/')
     ATUALIZANDO => URL('?{id}') -->
 
         @csrf
 
         <label for='nome'>Nome</label>
-        <input value= "{{isset($usuario) ? $usuario->nome :''}}" type="text" name="nome" id="nome"><br>
+        <input value= "{{old('nome', isset($usuario) ? $usuario->nome :'')}}" type="text" name="nome" id="nome"><br>
+        {{$errors->first('nome')}}
+        <br><br>
+
         
         <label for='email'>Email</label>
-        <input value= "{{isset($usuario) ? $usuario->email :''}}" type="text" name="email" id="email"><br>
-        
+        <input value= "{{old('email', isset($usuario) ? $usuario->email :'')}}" type="text" name="email" id="email"><br>
+        {{$errors->first('e-mail')}}
+        <br><br>
+
         <label for='data_nascimento'>Data de Nascimento</label>
-        <input value= "{{isset($usuario) ? $usuario->data_nascimento :''}}" type="text" name="data_nascimento" id="data_nascimento"><br>
+        <input value= "{{old('data_nascimento', isset($usuario) ? $usuario->data_nascimento :'')}}" type="text" name="data_nascimento" id="data_nascimento"><br>
+        {{$errors->first('data_nascimento')}}
+        <br><br>
 
         <select name='nivel_id'>
             @foreach($niveis as $nivel)

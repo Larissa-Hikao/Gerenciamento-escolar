@@ -4,12 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{Nivel, Usuario};
+use App\Http\Requests\UsuarioStoreRequest;
 
 class UsuarioController extends Controller
 {
     public function index(){
+        //Apenas NÃO Excluídos
         $usuarios = Usuario::all();
-        return view('index', compact('usuarios'));
+        
+        //$usuariosDeletadoseNaoDeletados = Ususario::withTrashed()->get();
+
+        //
+        $usuariosDeletados = Usuario::onlyTrashed()->get();
+
+        return view('index', compact('usuarios', 'usuariosDeletados'));
     }
 
     public function create(){
@@ -17,7 +25,7 @@ class UsuarioController extends Controller
         return view('from', compact('niveis'));//niveis seria o nome da variavel sem o cifrao
     }
 
-    public function store(Request $request){
+    public function store(UsuarioStoreRequest $request){
         
         // $usuario = Usuario::create([
         //     'nome' => $request->nome,
@@ -33,14 +41,25 @@ class UsuarioController extends Controller
     }
 
     public function edit($id) {
-            $usuario = Usuario::findOrFail($id);
-            $niveis=Nivel::all();
-            return view('from', compact('usuario','niveis'));
+        $usuario = Usuario::findOrFail($id);
+        $niveis=Nivel::all();
+        return view('from', compact('usuario','niveis'));
 
 
-    }
+}
+public function destroy($id) {
+        $usuario = Usuario::findOrFail($id);
+        $usuario->delete();
+        return back();
+}
 
-    public function update(Request $request, $id){
+public function restore($id){
+    $usuario = Usuario::onlyTrashed()->findOrFail($id);
+    $usuario->restore();
+    return back();
+}
+
+    public function update(UsuarioStoreRequest $request, $id){
 
         $usuario = Usuario::findOrFail($id);
 

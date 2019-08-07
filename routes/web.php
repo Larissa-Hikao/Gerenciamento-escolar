@@ -24,6 +24,9 @@ Route::get('/from', 'UsuarioController@create');
 Route::post('/', 'UsuarioController@store');
 Route::get('/{id}/edit', 'UsuarioController@edit');
 Route::put('/{id}', 'UsuarioController@update');
+Route::put('/{teste}', 'UsuarioController@update');
+Route::delete('/{id}', 'UsuarioController@destroy');
+Route::put('/restore/{id}', 'UsuarioController@restore');
 
 //Route::get('/soma/{a}/{b}', 'UsuarioController@soma');
 
