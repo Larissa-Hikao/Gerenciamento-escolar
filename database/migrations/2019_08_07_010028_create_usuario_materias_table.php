@@ -18,6 +18,8 @@ class CreateUsuarioMateriasTable extends Migration
                 onDelete('cascade');
             $table->integer('materia_id')->foreign('materia_id')->references('id')->on('materia')->
                 onDelete('cascade');;
+
+            $table->primary(['materia_id', 'usuario_id']);
         });
     }
 
