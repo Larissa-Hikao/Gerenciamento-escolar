@@ -24,7 +24,6 @@ class UsuarioStoreRequest extends FormRequest
     public function rules()
     {
 
-        dd($this->route($id));
         return [
             'nome' => ['required', 'min:3', 'max:50'],
             'email' => ['required', 'email', 'unique:usuario,email,'.$this->route('id')],

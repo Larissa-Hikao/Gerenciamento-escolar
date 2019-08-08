@@ -20,7 +20,7 @@ Route::get('/', function () {
 //ROTA DE USUÁRIO
 
 Route::get('/', 'UsuarioController@index');
-Route::get('/from', 'UsuarioController@create');
+Route::get('/from', 'UsuarioController@create')->middleware('checarhorario');
 Route::post('/', 'UsuarioController@store');
 Route::get('/{id}/edit', 'UsuarioController@edit');
 Route::put('/{id}', 'UsuarioController@update');
